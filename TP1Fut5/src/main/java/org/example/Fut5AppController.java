@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class Fut5AppController {
-    private static final Scanner tecla = new Scanner(System.in);
+    static final Scanner tecla = new Scanner(System.in);
     private static final List<Equipo> equipos = new ArrayList<>();
     private static final Service service = new Service();
 
@@ -28,7 +28,7 @@ public class Fut5AppController {
         System.out.println("2. BUSCAR JUGADOR POR NOMBRE");
         System.out.println("3. BUSCAR EQUIPO POR NOMBRE (ordenado por nombre del jugador)");
         System.out.println("4. BUSCAR EQUIPO POR NOMBRE (ordenado por numero de camiseta)");
-        System.out.println("5. BUSCAR EQUIPO POR NOMBRE (ordenador por nombre de jugador y por numero de camisetga)");
+        System.out.println("5. BUSCAR EQUIPO POR NOMBRE (ordenador por nombre de jugador y por numero de camiseta)");
         System.out.println("6. ELIMINAR EQUIPO POR NOMBRE");
         System.out.println("7. IMPORTAR LISTA DE JUGADORES DE UN EQUIPO");
         System.out.println("8. EXPORTAR LISTA DE JUGADORES DE UN EQUIPO");
@@ -260,7 +260,8 @@ public class Fut5AppController {
             System.out.println("No se encontro equipo con ese nombre!");
         }
     }
-
+    // OBTIENE EL NOMBRE DEL JUGADOR QUE ES CAPITAN DEL EQUIPO
+    // SI EL EQUIPO NO TIENE CAPITAN ASIGNADO, DEVUELVE "NO HAY CAPITAN ASIGNADO"
     private static String obtenerNombreCapitan(Equipo equipo) {
         for (Jugador jugador : equipo.getPlayers()) {
             if (jugador.isEsCapi()) {

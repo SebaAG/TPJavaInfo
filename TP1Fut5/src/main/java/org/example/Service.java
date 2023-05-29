@@ -16,6 +16,7 @@ public class Service {
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_JUGADORES))) {
             String linea;
             while ((linea = br.readLine()) != null) {
+                linea = linea.replace("\"", "");
                 String[] datos = linea.split(",");
                 if (datos.length == 9) {
                     String id = datos[0].trim();
