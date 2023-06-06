@@ -1,4 +1,4 @@
-package org.example;
+package org.example.service;
 
 import org.example.model.Jugador;
 import org.example.model.Equipo;
@@ -7,11 +7,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Service {
+public class ImportExportService {
     private static final String ARCHIVO_JUGADORES = "F:/Trabajo Practico 1 INFORMATORIO/TP1Fut5/src/" +
             "main/resources/jugadores.txt";
 
-    public List<Jugador> importarJugadores() {
+    public void importarJugadores() {
         List<Jugador> jugadores = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_JUGADORES))) {
             String linea;
@@ -43,7 +43,6 @@ public class Service {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jugadores;
     }
     public void exportarJugadores(List<Equipo> equipos) {
         if (equipos.isEmpty()) {

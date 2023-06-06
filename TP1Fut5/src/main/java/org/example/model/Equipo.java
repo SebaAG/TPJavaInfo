@@ -4,14 +4,14 @@ import java.util.List;
 
 public class Equipo {
     private final String nombre;
-    private final String fechaCreacion;
+    private final int fechaCreacion;
     private final Entrenador entrenador;
     private final List<Jugador> players;
 
-    public Equipo(String nombre, String fechaCreacion, Entrenador entrenador) {
+    public Equipo(String nombre, int fechaCreacion, Entrenador entrenador) {
         this.nombre = nombre;
-        this.entrenador = entrenador;
         this.fechaCreacion = fechaCreacion;
+        this.entrenador = entrenador;
         this.players = new ArrayList<>();
     }
 
@@ -25,11 +25,15 @@ public class Equipo {
         return entrenador;
     }
 
-    public String getFechaCreacion() {
+    public int getFechaCreacion() {
         return fechaCreacion;
     }
 
     public List<Jugador> getPlayers() {
         return players;
+    }
+
+    public Object getNombreEquipo() {
+        return nombre;
     }
 }

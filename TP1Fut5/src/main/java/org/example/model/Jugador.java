@@ -2,10 +2,8 @@ package org.example.model;
 
 import java.math.BigDecimal;
 
-public class Jugador {
+public class Jugador extends Persona {
     private final String id;
-    private final String nombre;
-    private final String apellido;
     private final BigDecimal altura;
     private final String posicion;
     private final int cantGoles;
@@ -15,9 +13,8 @@ public class Jugador {
 
     public Jugador(String id, String nombre, String apellido, BigDecimal altura, String posicion,
                    int cantGoles, int cantPart, boolean esCapi, int numCami) {
+        super(nombre, apellido);
         this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
         this.altura = altura;
         this.posicion = posicion;
         this.cantGoles = cantGoles;
@@ -31,14 +28,6 @@ public class Jugador {
 
     public String getId() {
         return id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
     }
 
     public BigDecimal getAltura() {
