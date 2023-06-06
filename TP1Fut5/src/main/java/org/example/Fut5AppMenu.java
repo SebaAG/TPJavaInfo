@@ -1,16 +1,19 @@
 package org.example;
 
-import org.example.service.DeleteService;
-import org.example.service.SearchService;
-import org.example.service.ImportExportService;
 import org.example.model.Equipo;
+import org.example.service.DeleteService;
+import org.example.service.ImportExportService;
 import org.example.service.TeamService;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Fut5AppMenu {
     private static final Scanner tecla = new Scanner(System.in);
     private static final List<Equipo> equipos = new ArrayList<>();
     private static final ImportExportService service = new ImportExportService();
+
     // EJECUTA EL MENU DE OPCIONES EN EL METODO PRINCIPAL
     public void run() {
         int opc;
@@ -57,28 +60,23 @@ public class Fut5AppMenu {
     }
 
     private static void crearEquipo() {
-        TeamService TeamService = new TeamService();
-        TeamService.crearEquipo();
+        org.example.service.TeamService.crearEquipo();
     }
 
     private static void buscarJugadorNombre() {
-        SearchService SearchService = new SearchService();
-        SearchService.buscarJugadorNombre(TeamService.equipos);
+        org.example.service.SearchService.buscarJugadorNombre(TeamService.equipos);
     }
 
     private static void buscarEquipoNombre() {
-        SearchService SearchService = new SearchService();
-        SearchService.buscarEquipoNombre(TeamService.equipos);
+        org.example.service.SearchService.buscarEquipoNombre(TeamService.equipos);
     }
 
     private static void buscarEquipoCamiseta() {
-        SearchService SearchService = new SearchService();
-        SearchService.buscarEquipoCamiseta(TeamService.equipos);
+        org.example.service.SearchService.buscarEquipoCamiseta(TeamService.equipos);
     }
 
     private static void buscarEquipoPosicion() {
-        SearchService SearchService = new SearchService();
-        SearchService.buscarEquipoPosicion(TeamService.equipos);
+        org.example.service.SearchService.buscarEquipoPosicion(TeamService.equipos);
     }
 
     private static void eliminarEquipo() {
