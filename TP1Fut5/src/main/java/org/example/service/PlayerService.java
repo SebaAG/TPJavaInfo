@@ -27,15 +27,15 @@ public class PlayerService {
 
         String posicion = obtenerPosicionValid();
 
-        System.out.println("Cantidad de goles del jugador: ");
+        System.out.print("Cantidad de goles del jugador: ");
         int cantGoles = tecla.nextInt();
 
-        System.out.println("Cantidad de partidos jugados: ");
+        System.out.print("Cantidad de partidos jugados: ");
         int cantPart = tecla.nextInt();
 
         boolean esCapi = esCapitan();
 
-        System.out.println("Numero de la camiseta del jugador: ");
+        System.out.print("Numero de la camiseta del jugador: ");
         int numCami = tecla.nextInt();
 
         String nombEquip = obtenerNombreEquipo();
