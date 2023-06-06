@@ -10,7 +10,6 @@ import java.util.UUID;
 
 
 public class PlayerService {
-
     private static final Scanner tecla = new Scanner(System.in);
 
     // CREADOR DE JUGADORES Y DONDE SE AGREGAN SU INFORMACION
@@ -71,7 +70,6 @@ public class PlayerService {
         return tecla.next();
     }
 
-
     private static String obtenerPosicionValid() {
         String pos = null;
         boolean posValid = false;
@@ -103,7 +101,6 @@ public class PlayerService {
         }
         return esCapi;
     }
-
     // VERIFICA SI EL EQUIPO TIENE AL MENOS UN JUGADOR COMO CAPITAN
     private static boolean tieneCapitan(List<Jugador> jugadores) {
         for (Jugador jugador : jugadores) {
@@ -113,7 +110,6 @@ public class PlayerService {
         }
         return false;
     }
-
     // VERIFICA SI EL EQUIPO TIENE AL MENOS UN JUGADOR CON EL NUMERO DE CAMISETA ESPECIFICADO
     private static boolean tieneNumCamiseta(List<Jugador> jugadores, int numCami) {
         for (Jugador jugador : jugadores) {
@@ -123,7 +119,6 @@ public class PlayerService {
         }
         return false;
     }
-
     // GENERA UN IDENTIFICADOR UNICO UTILIZANDO UUID
     private static String generarIdJugador() {
         return UUID.randomUUID().toString();

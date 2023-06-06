@@ -1,6 +1,5 @@
 package org.example;
 
-
 import org.example.service.DeleteService;
 import org.example.service.SearchService;
 import org.example.service.ImportExportService;
@@ -12,8 +11,6 @@ public class Fut5AppMenu {
     private static final Scanner tecla = new Scanner(System.in);
     private static final List<Equipo> equipos = new ArrayList<>();
     private static final ImportExportService service = new ImportExportService();
-
-
     // EJECUTA EL MENU DE OPCIONES EN EL METODO PRINCIPAL
     public void run() {
         int opc;
@@ -23,7 +20,6 @@ public class Fut5AppMenu {
             ejectOpc(opc);
         } while (opc != 9);
     }
-
     // SE MUESTRA EL MENU DE LA APP
     private static void showMenu() {
         System.out.println("*** MENU ***");
@@ -37,14 +33,12 @@ public class Fut5AppMenu {
         System.out.println("8. EXPORTAR LISTA DE JUGADORES DE UN EQUIPO");
         System.out.println("9. SALIR");
     }
-
     // SE INGRESA EL NUMERO DESEADO PARA CADA OPCION DEL MENU
     private static int obtOpc() {
 
         System.out.println("Seleccione que desea realizar: ");
         return tecla.nextInt();
     }
-
     // SWITCH PARA EJECUTAR LA OPCIÓN SELECCIONADA
     private static void ejectOpc(int opc) {
 
@@ -87,7 +81,6 @@ public class Fut5AppMenu {
         SearchService.buscarEquipoPosicion(TeamService.equipos);
     }
 
-    // SE INGRESA NOMBRE DEL EQUIPO Y SE PROCEDE A ELIMINARLO
     private static void eliminarEquipo() {
         Scanner tecla = new Scanner(System.in);
         System.out.println("Ingrese el nombre del equipo a eliminar: ");
@@ -96,7 +89,6 @@ public class Fut5AppMenu {
         DeleteService.eliminarEquipo(TeamService.equipos, nombreEquipo);
     }
 
-    // IMPORTA JUGADORES DESDE UN ARCHIVO .TXT
     private static void importarJugadores() {
         service.importarJugadores();
     }

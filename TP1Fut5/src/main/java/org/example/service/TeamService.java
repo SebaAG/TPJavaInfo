@@ -3,7 +3,6 @@ package org.example.service;
 import org.example.model.Entrenador;
 import org.example.model.Equipo;
 import org.example.model.Jugador;
-
 import java.util.*;
 
 public class TeamService {
@@ -69,5 +68,3 @@ public class TeamService {
         return null;
     }
 }
-
-

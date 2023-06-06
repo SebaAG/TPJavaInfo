@@ -1,7 +1,6 @@
 package org.example.service;
 
 import org.example.model.Equipo;
-
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,4 +25,3 @@ public class DeleteService {
         }
     }
 }
-

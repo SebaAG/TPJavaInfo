@@ -2,13 +2,11 @@ package org.example.service;
 
 import org.example.model.Equipo;
 import org.example.model.Jugador;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
 public class SearchService {
-
     // BUSCADOR DE JUGADORES DONDE SE MUESTRA SU INFORMACION
     public static void buscarJugadorNombre(List<Equipo> equipos) {
         Scanner tecla = new Scanner(System.in);
@@ -41,7 +39,6 @@ public class SearchService {
             System.out.println("No se encontro jugador!");
         }
     }
-
     // BUSCADOR DE EQUIPO DONDE SE MUESTRAN LOS JUGADORES ORDENADOS ALFABETICAMENTE
     public static void buscarEquipoNombre(List<Equipo> equipos) {
         Scanner tecla = new Scanner(System.in);
@@ -83,7 +80,6 @@ public class SearchService {
         }
         return "No hay capitan asignado!";
     }
-
     // BUSCADOR DE EQUIPOS DONDE SE ORDENA A LOS JUGADORES POR EL NUMERO DE CAMISETA
     public static void buscarEquipoCamiseta(List<Equipo> equipos) {
         Scanner tecla = new Scanner(System.in);
@@ -115,7 +111,6 @@ public class SearchService {
             System.out.println("No se encontro ningun equipo con ese nombre!");
         }
     }
-
     // BUSCADOR QUE MUESTRA EL EQUIPO, NUMERO DE CAMISETA Y LA POSICION DE LOS JUGADORES
     public static void buscarEquipoPosicion(List<Equipo> equipos) {
         Scanner tecla = new Scanner(System.in);
