@@ -44,7 +44,7 @@ public class SearchService {
             }
         }
         if (!encontrado) {
-            System.out.println("No se encontro jugador!");
+            System.out.println("No se encontró jugador!");
         }
     }
     // BUSCADOR DE EQUIPO DONDE SE MUESTRAN LOS JUGADORES ORDENADOS ALFABETICAMENTE
@@ -58,7 +58,7 @@ public class SearchService {
             if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
                 encontrado = true;
                 System.out.println("Nombre del equipo: " + equipo.getNombre());
-                System.out.println("Fecha de creacion: " + equipo.getFechaCreacion());
+                System.out.println("Fecha de creación: " + equipo.getFechaCreacion());
                 System.out.println("Nombre del entrenador: " + equipo.getEntrenador().getNombre() + " " +
                         equipo.getEntrenador().getApellido() + " Edad: " + equipo.getEntrenador().getEdad());
                 System.out.println("Capitán del equipo: " + obtenerNombreCapitan(equipo));
@@ -74,7 +74,7 @@ public class SearchService {
             }
         }
         if (!encontrado) {
-            System.out.println("No se encontro equipo con ese nombre!");
+            System.out.println("No se encontró equipo con ese nombre!");
         }
     }
     // OBTIENE EL NOMBRE DEL JUGADOR QUE ES CAPITAN DEL EQUIPO
@@ -98,7 +98,7 @@ public class SearchService {
             if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
                 encontrado = true;
                 System.out.println("Nombre del equipo: " + equipo.getNombre());
-                System.out.println("Fecha de creacion: " + equipo.getFechaCreacion());
+                System.out.println("Fecha de creación: " + equipo.getFechaCreacion());
                 System.out.println("Nombre del entrenador: " + equipo.getEntrenador().getNombre() + " " +
                         equipo.getEntrenador().getApellido() + " Edad: " + equipo.getEntrenador().getEdad());
                 System.out.println("Lista de jugadores ordenados por su numero de camiseta: ");
@@ -114,7 +114,7 @@ public class SearchService {
             }
         }
         if (!encontrado) {
-            System.out.println("No se encontro ningun equipo con ese nombre!");
+            System.out.println("No se encontró ningún equipo con ese nombre!");
         }
     }
     // BUSCADOR QUE MUESTRA EL EQUIPO, NUMERO DE CAMISETA Y LA POSICION DE LOS JUGADORES
@@ -128,23 +128,23 @@ public class SearchService {
             if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
                 encontrado = true;
                 System.out.println("Nombre del equipo: " + equipo.getNombre());
-                System.out.println("Fecha de creacion: " + equipo.getFechaCreacion());
+                System.out.println("Fecha de creación: " + equipo.getFechaCreacion());
                 System.out.println("Nombre del entrenador: " + equipo.getEntrenador().getNombre() + " " +
                         equipo.getEntrenador().getApellido() + " Edad: " + equipo.getEntrenador().getEdad());
-                System.out.println("Lista de jugadores ordenados por su numero de camiseta y por posicion: ");
+                System.out.println("Lista de jugadores ordenados por su numero de camiseta y por posición: ");
 
                 List<Jugador> jugadores = equipo.getPlayers();
                 jugadores.sort(Comparator.comparing(Jugador::getPosicion).thenComparingInt(Jugador::getNumCami));
 
                 for (Jugador jugador : jugadores) {
                     System.out.println(jugador.getNombre() + " " + jugador.getApellido() + " -Camiseta: " +
-                            jugador.getNumCami() + " -Posicion: " + jugador.getPosicion());
+                            jugador.getNumCami() + " -Posición: " + jugador.getPosicion());
                 }
                 break;
             }
         }
         if (!encontrado) {
-            System.out.println("No se encontro ningun equipo con ese nombre!");
+            System.out.println("No se encontró ningún equipo con ese nombre!");
         }
     }
 }

@@ -37,7 +37,7 @@ public class PlayerService {
 
         boolean esCapi = esCapitan();
 
-        System.out.print("Numero de la camiseta del jugador: ");
+        System.out.print("Número de la camiseta del jugador: ");
         int numCami = tecla.nextInt();
 
         String nombEquip = obtenerNombreEquipo();
@@ -53,8 +53,8 @@ public class PlayerService {
 
         if (equipoExist && ((esCapi && tieneCapitan(equipo.getPlayers())) ||
                 tieneNumCamiseta(equipo.getPlayers(), numCami))) {
-            System.out.println("Ya existe un capitan en este equipo o un jugador con el mismo numero de camiseta." +
-                    " Seleccione otra opcion.");
+            System.out.println("Ya existe un capitán en este equipo o un jugador con el mismo número de camiseta." +
+                    " Seleccione otra opción.");
             return null;
         }
 
@@ -76,20 +76,20 @@ public class PlayerService {
         String pos = null;
         boolean posValid = false;
         while (!posValid) {
-            System.out.print("Posicion del jugador (arquero/defensa/mediocampista/delantero): ");
+            System.out.print("Posición del jugador (arquero/defensa/mediocampista/delantero): ");
             pos = tecla.next();
             pos = pos.toUpperCase();
 
             switch (pos) {
                 case "ARQUERO", "DEFENSA", "MEDIOCAMPISTA", "DELANTERO" -> posValid = true;
-                default -> System.out.println("Posicion invalida");
+                default -> System.out.println("Posición invalida");
             }
         }
         return pos;
     }
 
     private boolean esCapitan() {
-        System.out.print("Es capitan? (s/n): ");
+        System.out.print("Es capitán? (s/n): ");
         String esCapis = tecla.next();
         boolean esCapi;
 
@@ -98,7 +98,7 @@ public class PlayerService {
         } else if (esCapis.equalsIgnoreCase("n")) {
             esCapi = false;
         } else {
-            System.out.println("Ingreso incorrecto, se asumira como NO capitan");
+            System.out.println("Ingreso incorrecto, se asumirá como NO capitán");
             esCapi = false;
         }
         return esCapi;

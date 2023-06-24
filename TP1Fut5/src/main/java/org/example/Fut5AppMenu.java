@@ -55,7 +55,7 @@ public class Fut5AppMenu {
             case 7 -> importarJugadores();
             case 8 -> exportarJugadores(tm);
             case 9 -> System.out.println("Adios!");
-            default -> System.out.println("Opcion invalida.");
+            default -> System.out.println("Opción invalida.");
         }
     }
 

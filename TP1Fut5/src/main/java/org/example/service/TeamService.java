@@ -53,13 +53,13 @@ public class TeamService {
         boolean agregarPlayers = true;
         int jugadoresAgregados = 0;
 
-        System.out.println("¿Desea utilizar jugadores importados? (s/n): ");
+        System.out.println("Desea utilizar jugadores importados? (s/n): ");
         String resp = tecla.next();
         if (resp.equalsIgnoreCase("s")) {
             // Agregar jugadores importados al equipo
             for (Jugador jugador : jugadoresImportados) {
                 if (equipo.getPlayers().size() >= maxPlayers) {
-                    System.out.println("Se alcanzó el máximo permitido de jugadores.");
+                    System.out.println("Se alcanzo el máximo permitido de jugadores.");
                     break;
                 }
 
@@ -75,11 +75,11 @@ public class TeamService {
                     jugadoresAgregados++;
                 }
                 if (equipo.getPlayers().size() >= maxPlayers) {
-                    System.out.println("Se alcanzó el máximo permitido de jugadores.");
+                    System.out.println("Se alcanzo el máximo permitido de jugadores.");
                     break;
                 }
 
-                System.out.print("¿Desea agregar otro jugador? (s/n): ");
+                System.out.print("Desea agregar otro jugador? (s/n): ");
                 resp = tecla.next();
                 agregarPlayers = resp.equalsIgnoreCase("s");
             }

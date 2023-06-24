@@ -66,7 +66,7 @@ public class ImportExportService {
                     bw.write(linea);
                     bw.newLine();
                 }
-                System.out.println("Exportacion exitosa para el equipo " + equipo.getNombre() +
+                System.out.println("Exportación exitosa para el equipo " + equipo.getNombre() +
                         ". Se ha guardado el archivo de jugadores en: " + rutaArchivo);
             } catch (IOException e) {
                 System.out.println("Error al exportar los jugadores del equipo " + equipo.getNombre() +
