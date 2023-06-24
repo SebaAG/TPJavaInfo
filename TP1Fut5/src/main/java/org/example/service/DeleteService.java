@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class DeleteService {
-    public static void eliminarEquipo(List<Equipo> equipos, String nombreEquipo) {
+    public void eliminarEquipo(List<Equipo> equipos, String nombreEquipo) {
         System.out.println(" ** ELIMINAR EQUIPO **");
         boolean encontrado = false;
 

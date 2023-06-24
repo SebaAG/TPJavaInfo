@@ -6,9 +6,20 @@ import org.example.model.Jugador;
 import java.util.*;
 
 public class TeamService {
-    public static final List<Equipo> equipos = new ArrayList<>();
+    private final List<Equipo> equipos;
+    private final PlayerService playerService = new PlayerService();
+    private final List<Jugador> jugadoresImportados;
 
-    public static void crearEquipo() {
+    public TeamService() {
+        this.equipos = new ArrayList<>();
+        this.jugadoresImportados = new ArrayList<>();
+    }
+
+    public List<Equipo> getEquipos() {
+        return equipos;
+    }
+
+    public void crearEquipo() {
         Scanner tecla = new Scanner(System.in);
         System.out.println("** CREAR EQUIPO **");
 
@@ -20,7 +31,7 @@ public class TeamService {
             return;
         }
 
-        System.out.print("Fecha de creacion del equipo: ");
+        System.out.print("Fecha de creación del equipo: ");
         int fechaCreacion = tecla.nextInt();
 
         System.out.println("** DATOS DEL ENTRENADOR **");
@@ -40,26 +51,45 @@ public class TeamService {
 
         int maxPlayers = 5;
         boolean agregarPlayers = true;
-        while (agregarPlayers && equipo.getPlayers().size() < maxPlayers) {
-            Jugador jugador = PlayerService.crearJugador();
-            if (jugador != null) {
-                equipo.getPlayers().add(jugador);
-            }
-            if (equipo.getPlayers().size() >= maxPlayers) {
-                System.out.println("Se alcanzo el maximo permitido de jugadores!");
-                break;
-            }
+        int jugadoresAgregados = 0;
 
-            System.out.print("Desea agregar otro jugador?");
-            String resp = tecla.next();
-            agregarPlayers = resp.equalsIgnoreCase("s");
+        System.out.println("¿Desea utilizar jugadores importados? (s/n): ");
+        String resp = tecla.next();
+        if (resp.equalsIgnoreCase("s")) {
+            // Agregar jugadores importados al equipo
+            for (Jugador jugador : jugadoresImportados) {
+                if (equipo.getPlayers().size() >= maxPlayers) {
+                    System.out.println("Se alcanzó el máximo permitido de jugadores.");
+                    break;
+                }
+
+                equipo.getPlayers().add(jugador);
+                jugadoresAgregados++;
+            }
+        } else {
+            // Crear jugadores nuevos
+            while (agregarPlayers && equipo.getPlayers().size() < maxPlayers) {
+                Jugador jugador = playerService.crearJugador();
+                if (jugador != null) {
+                    equipo.getPlayers().add(jugador);
+                    jugadoresAgregados++;
+                }
+                if (equipo.getPlayers().size() >= maxPlayers) {
+                    System.out.println("Se alcanzó el máximo permitido de jugadores.");
+                    break;
+                }
+
+                System.out.print("¿Desea agregar otro jugador? (s/n): ");
+                resp = tecla.next();
+                agregarPlayers = resp.equalsIgnoreCase("s");
+            }
         }
 
-
+        System.out.println("Se agregaron " + jugadoresAgregados + " jugadores.");
         System.out.println("** EQUIPO CREADO **");
     }
 
-    private static Equipo buscarEquipoNombre(String nombreEquipo) {
+    public Equipo buscarEquipoNombre(String nombreEquipo) {
         for (Equipo equipo : equipos) {
             if (equipo.getNombreEquipo().equals(nombreEquipo)) {
                 return equipo;

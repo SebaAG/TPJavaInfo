@@ -1,18 +1,18 @@
 package org.example;
 
-import org.example.model.Equipo;
 import org.example.service.DeleteService;
 import org.example.service.ImportExportService;
 import org.example.service.TeamService;
+import org.example.service.SearchService;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Fut5AppMenu {
     private static final Scanner tecla = new Scanner(System.in);
-    private static final List<Equipo> equipos = new ArrayList<>();
-    private static final ImportExportService service = new ImportExportService();
+    private final TeamService tm = new TeamService();
+    private final ImportExportService service = new ImportExportService();
+    private final DeleteService deleteService = new DeleteService();
+    private final SearchService ss = new SearchService(tm);
 
     // EJECUTA EL MENU DE OPCIONES EN EL METODO PRINCIPAL
     public void run() {
@@ -43,7 +43,7 @@ public class Fut5AppMenu {
         return tecla.nextInt();
     }
     // SWITCH PARA EJECUTAR LA OPCIÓN SELECCIONADA
-    private static void ejectOpc(int opc) {
+    private void ejectOpc(int opc) {
 
         switch (opc) {
             case 1 -> crearEquipo();
@@ -53,45 +53,46 @@ public class Fut5AppMenu {
             case 5 -> buscarEquipoPosicion();
             case 6 -> eliminarEquipo();
             case 7 -> importarJugadores();
-            case 8 -> exportarJugadores();
+            case 8 -> exportarJugadores(tm);
             case 9 -> System.out.println("Adios!");
             default -> System.out.println("Opcion invalida.");
         }
     }
 
     private static void crearEquipo() {
-        org.example.service.TeamService.crearEquipo();
+        TeamService tm = new TeamService();
+        tm.crearEquipo();
     }
 
-    private static void buscarJugadorNombre() {
-        org.example.service.SearchService.buscarJugadorNombre(TeamService.equipos);
+    private void buscarJugadorNombre() {
+        ss.buscarJugadorNombre();
     }
 
-    private static void buscarEquipoNombre() {
-        org.example.service.SearchService.buscarEquipoNombre(TeamService.equipos);
+    private void buscarEquipoNombre() {
+        ss.buscarEquipoNombre();
     }
 
-    private static void buscarEquipoCamiseta() {
-        org.example.service.SearchService.buscarEquipoCamiseta(TeamService.equipos);
+    private void buscarEquipoCamiseta() {
+        ss.buscarEquipoCamiseta();
     }
 
-    private static void buscarEquipoPosicion() {
-        org.example.service.SearchService.buscarEquipoPosicion(TeamService.equipos);
+    private void buscarEquipoPosicion() {
+        ss.buscarEquipoPosicion();
     }
 
-    private static void eliminarEquipo() {
+    private void eliminarEquipo() {
         Scanner tecla = new Scanner(System.in);
         System.out.println("Ingrese el nombre del equipo a eliminar: ");
         String nombreEquipo = tecla.next();
 
-        DeleteService.eliminarEquipo(TeamService.equipos, nombreEquipo);
+        deleteService.eliminarEquipo(tm.getEquipos(), nombreEquipo);
     }
 
-    private static void importarJugadores() {
+    private void importarJugadores() {
         service.importarJugadores();
     }
     // EXPORTA JUGADORES A UN ARCHIVO .TXT
-    private static void exportarJugadores() {
-        service.exportarJugadores(equipos);
+    private void exportarJugadores(TeamService tm) {
+        service.exportarJugadores(tm.getEquipos());
     }
 }

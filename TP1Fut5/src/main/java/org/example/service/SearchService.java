@@ -7,9 +7,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SearchService {
+
+    private TeamService teamService;
+    public SearchService(TeamService teamService) {
+        this.teamService = teamService;
+    }
+
+    private Scanner tecla;
+
     // BUSCADOR DE JUGADORES DONDE SE MUESTRA SU INFORMACION
-    public static void buscarJugadorNombre(List<Equipo> equipos) {
-        Scanner tecla = new Scanner(System.in);
+    public void buscarJugadorNombre() {
+        tecla = new Scanner(System.in);
         System.out.println("** BUSCAR JUGADOR POR NOMBRE **");
 
         System.out.print("Nombre del jugador: ");
@@ -17,7 +25,7 @@ public class SearchService {
 
         boolean encontrado = false;
 
-        for (Equipo equipo : equipos) {
+        for (Equipo equipo : teamService.getEquipos()) {
             List<Jugador> jugadores = equipo.getPlayers();
 
             for (Jugador jugador : jugadores) {
@@ -40,14 +48,13 @@ public class SearchService {
         }
     }
     // BUSCADOR DE EQUIPO DONDE SE MUESTRAN LOS JUGADORES ORDENADOS ALFABETICAMENTE
-    public static void buscarEquipoNombre(List<Equipo> equipos) {
-        Scanner tecla = new Scanner(System.in);
+    public void buscarEquipoNombre() {
         System.out.println(" ** BUSCAR EQUIPO POR NOMBRE **");
         System.out.print("Nombre del equipo: ");
         String nombreEquipo = tecla.nextLine();
         boolean encontrado = false;
 
-        for (Equipo equipo : equipos) {
+        for (Equipo equipo : teamService.getEquipos()) {
             if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
                 encontrado = true;
                 System.out.println("Nombre del equipo: " + equipo.getNombre());
@@ -72,7 +79,7 @@ public class SearchService {
     }
     // OBTIENE EL NOMBRE DEL JUGADOR QUE ES CAPITAN DEL EQUIPO
     // SI EL EQUIPO NO TIENE CAPITAN ASIGNADO, DEVUELVE "NO HAY CAPITAN ASIGNADO"
-    private static String obtenerNombreCapitan(Equipo equipo) {
+    private String obtenerNombreCapitan(Equipo equipo) {
         for (Jugador jugador : equipo.getPlayers()) {
             if (jugador.isEsCapi()) {
                 return jugador.getNombre() + " " + jugador.getApellido();
@@ -81,14 +88,13 @@ public class SearchService {
         return "No hay capitan asignado!";
     }
     // BUSCADOR DE EQUIPOS DONDE SE ORDENA A LOS JUGADORES POR EL NUMERO DE CAMISETA
-    public static void buscarEquipoCamiseta(List<Equipo> equipos) {
-        Scanner tecla = new Scanner(System.in);
+    public void buscarEquipoCamiseta() {
         System.out.println(" ** BUSCAR EQUIPO ORDENADO POR Nº CAMISETA **");
         System.out.print("Nombre del equipo: ");
         String nombreEquipo = tecla.nextLine();
         boolean encontrado = false;
 
-        for (Equipo equipo : equipos) {
+        for (Equipo equipo : teamService.getEquipos()) {
             if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
                 encontrado = true;
                 System.out.println("Nombre del equipo: " + equipo.getNombre());
@@ -112,14 +118,13 @@ public class SearchService {
         }
     }
     // BUSCADOR QUE MUESTRA EL EQUIPO, NUMERO DE CAMISETA Y LA POSICION DE LOS JUGADORES
-    public static void buscarEquipoPosicion(List<Equipo> equipos) {
-        Scanner tecla = new Scanner(System.in);
+    public void buscarEquipoPosicion() {
         System.out.println(" ** BUSCAR EQUIPO ORDENADO POR Nº CAMISETA Y POSICION **");
         System.out.print("Nombre del equipo: ");
         String nombreEquipo = tecla.nextLine();
         boolean encontrado = false;
 
-        for (Equipo equipo : equipos) {
+        for (Equipo equipo : teamService.getEquipos()) {
             if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
                 encontrado = true;
                 System.out.println("Nombre del equipo: " + equipo.getNombre());

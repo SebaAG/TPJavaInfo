@@ -10,10 +10,12 @@ import java.util.UUID;
 
 
 public class PlayerService {
-    private static final Scanner tecla = new Scanner(System.in);
+
+    private Scanner tecla;
 
     // CREADOR DE JUGADORES Y DONDE SE AGREGAN SU INFORMACION
-    static Jugador crearJugador() {
+    public Jugador crearJugador() {
+        tecla = new Scanner(System.in);
         System.out.println("** CREAR JUGADOR ** ");
 
         System.out.print("Nombre del jugador: ");
@@ -65,12 +67,12 @@ public class PlayerService {
         return jugador;
     }
 
-    private static String obtenerNombreEquipo() {
+    private String obtenerNombreEquipo() {
         System.out.println("Ingrese nombre del equipo al que pertenece: ");
         return tecla.next();
     }
 
-    private static String obtenerPosicionValid() {
+    private String obtenerPosicionValid() {
         String pos = null;
         boolean posValid = false;
         while (!posValid) {
@@ -86,7 +88,7 @@ public class PlayerService {
         return pos;
     }
 
-    private static boolean esCapitan() {
+    private boolean esCapitan() {
         System.out.print("Es capitan? (s/n): ");
         String esCapis = tecla.next();
         boolean esCapi;
@@ -102,7 +104,7 @@ public class PlayerService {
         return esCapi;
     }
     // VERIFICA SI EL EQUIPO TIENE AL MENOS UN JUGADOR COMO CAPITAN
-    private static boolean tieneCapitan(List<Jugador> jugadores) {
+    private boolean tieneCapitan(List<Jugador> jugadores) {
         for (Jugador jugador : jugadores) {
             if (jugador.isEsCapi()) {
                 return true;
@@ -111,7 +113,7 @@ public class PlayerService {
         return false;
     }
     // VERIFICA SI EL EQUIPO TIENE AL MENOS UN JUGADOR CON EL NUMERO DE CAMISETA ESPECIFICADO
-    private static boolean tieneNumCamiseta(List<Jugador> jugadores, int numCami) {
+    private boolean tieneNumCamiseta(List<Jugador> jugadores, int numCami) {
         for (Jugador jugador : jugadores) {
             if (jugador.getNumCami() == numCami) {
                 return true;
@@ -120,12 +122,14 @@ public class PlayerService {
         return false;
     }
     // GENERA UN IDENTIFICADOR UNICO UTILIZANDO UUID
-    private static String generarIdJugador() {
+    private String generarIdJugador() {
         return UUID.randomUUID().toString();
     }
 
-    private static Equipo buscarEquipoNombre(String nombreEquipo) {
-        for (Equipo equipo : TeamService.equipos) {
+    private Equipo buscarEquipoNombre(String nombreEquipo) {
+        TeamService teamService = new TeamService();
+        List<Equipo> equipos = teamService.getEquipos();
+        for (Equipo equipo : equipos) {
             if (equipo.getNombreEquipo().equals(nombreEquipo)) {
                 return equipo;
             }

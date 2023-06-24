@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImportExportService {
-    private static final String ARCHIVO_JUGADORES = "F:/Trabajo Practico 1 INFORMATORIO/TP1Fut5/src/" +
+    private final String ARCHIVO_JUGADORES = "F:/Trabajo Practico 1 INFORMATORIO/TP1Fut5/src/" +
             "main/resources/jugadores.txt";
 
+    private List<Jugador> jugadoresImportados = new ArrayList<>();
+
     public void importarJugadores() {
-        List<Jugador> jugadores = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_JUGADORES))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -31,8 +32,7 @@ public class ImportExportService {
 
                     Jugador jugador = new Jugador(id, nombre, apellido, altura, posicion, cantGoles,
                             cantPart, esCapi, numCami);
-                    jugadores.add(jugador);
-
+                    jugadoresImportados.add(jugador);
 
                     System.out.println("Datos importados: " + jugador.getId() + ", " + jugador.getNombre() + ", " +
                             jugador.getApellido() + ", " + jugador.getAltura() + ", " + jugador.getPosicion() + ", " +
