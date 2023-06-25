@@ -66,7 +66,11 @@ public class TeamService {
                     System.out.println("Se alcanzo el máximo permitido de jugadores.");
                     break;
                 }
-
+                if (verifJugImp(jugador)) {
+                    System.out.println("El jugador importado " + jugador.getNombre() + jugador.getApellido()
+                    + " ya esta en otro equipo!");
+                    continue;
+                }
                 equipo.getPlayers().add(jugador);
                 jugadoresAgregados++;
             }
@@ -100,5 +104,14 @@ public class TeamService {
             }
         }
         return null;
+    }
+
+    public boolean verifJugImp(Jugador jugador) {
+        for (Equipo equipo : equipos) {
+            if (equipo.getPlayers().contains(jugador)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
