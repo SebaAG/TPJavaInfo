@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class Fut5AppMenu {
     private static final Scanner tecla = new Scanner(System.in);
-    private static final TeamService tm = new TeamService();
+    private final TeamService tm = new TeamService();
     private final ImportExportService service = new ImportExportService();
     private final DeleteService deleteService = new DeleteService();
     private final SearchService ss = new SearchService(tm);
@@ -61,7 +61,7 @@ public class Fut5AppMenu {
         }
     }
 
-    private static void crearEquipo() {
+    private void crearEquipo() {
         tm.crearEquipo();
     }
 

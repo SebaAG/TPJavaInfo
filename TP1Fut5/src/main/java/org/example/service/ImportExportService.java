@@ -4,10 +4,7 @@ import org.example.model.Jugador;
 import org.example.model.Equipo;
 import java.io.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ImportExportService {
     private final String ARCHIVO_JUGADORES = "F:/Trabajo Practico 1 INFORMATORIO/TP1Fut5/src/" +
