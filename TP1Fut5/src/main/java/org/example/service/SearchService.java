@@ -13,11 +13,10 @@ public class SearchService {
         this.teamService = teamService;
     }
 
-    private Scanner tecla;
 
     // BUSCADOR DE JUGADORES DONDE SE MUESTRA SU INFORMACION
     public void buscarJugadorNombre() {
-        tecla = new Scanner(System.in);
+        Scanner tecla = new Scanner(System.in);
         System.out.println("** BUSCAR JUGADOR POR NOMBRE **");
 
         System.out.print("Nombre del jugador: ");
@@ -49,6 +48,7 @@ public class SearchService {
     }
     // BUSCADOR DE EQUIPO DONDE SE MUESTRAN LOS JUGADORES ORDENADOS ALFABETICAMENTE
     public void buscarEquipoNombre() {
+        Scanner tecla = new Scanner(System.in);
         System.out.println(" ** BUSCAR EQUIPO POR NOMBRE **");
         System.out.print("Nombre del equipo: ");
         String nombreEquipo = tecla.nextLine();
@@ -89,6 +89,7 @@ public class SearchService {
     }
     // BUSCADOR DE EQUIPOS DONDE SE ORDENA A LOS JUGADORES POR EL NUMERO DE CAMISETA
     public void buscarEquipoCamiseta() {
+        Scanner tecla = new Scanner(System.in);
         System.out.println(" ** BUSCAR EQUIPO ORDENADO POR Nº CAMISETA **");
         System.out.print("Nombre del equipo: ");
         String nombreEquipo = tecla.nextLine();
@@ -119,6 +120,7 @@ public class SearchService {
     }
     // BUSCADOR QUE MUESTRA EL EQUIPO, NUMERO DE CAMISETA Y LA POSICION DE LOS JUGADORES
     public void buscarEquipoPosicion() {
+        Scanner tecla = new Scanner(System.in);
         System.out.println(" ** BUSCAR EQUIPO ORDENADO POR Nº CAMISETA Y POSICION **");
         System.out.print("Nombre del equipo: ");
         String nombreEquipo = tecla.nextLine();

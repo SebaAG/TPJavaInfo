@@ -5,15 +5,16 @@ import org.example.model.Equipo;
 import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ImportExportService {
     private final String ARCHIVO_JUGADORES = "F:/Trabajo Practico 1 INFORMATORIO/TP1Fut5/src/" +
             "main/resources/jugadores.txt";
 
-    private List<Jugador> jugadoresImportados = new ArrayList<>();
-
-    public void importarJugadores() {
+    public  Set<Jugador> importarJugadores() {
+        Set<Jugador> jugadoresImportados = new HashSet<>();
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_JUGADORES))) {
             String linea;
             while ((linea = br.readLine()) != null) {
@@ -43,6 +44,7 @@ public class ImportExportService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return jugadoresImportados;
     }
     public void exportarJugadores(List<Equipo> equipos) {
         if (equipos.isEmpty()) {

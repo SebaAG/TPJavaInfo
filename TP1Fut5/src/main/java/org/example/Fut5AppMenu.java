@@ -1,15 +1,17 @@
 package org.example;
 
+import org.example.model.Jugador;
 import org.example.service.DeleteService;
 import org.example.service.ImportExportService;
 import org.example.service.TeamService;
 import org.example.service.SearchService;
 
 import java.util.Scanner;
+import java.util.Set;
 
 public class Fut5AppMenu {
     private static final Scanner tecla = new Scanner(System.in);
-    private final TeamService tm = new TeamService();
+    private static final TeamService tm = new TeamService();
     private final ImportExportService service = new ImportExportService();
     private final DeleteService deleteService = new DeleteService();
     private final SearchService ss = new SearchService(tm);
@@ -60,7 +62,6 @@ public class Fut5AppMenu {
     }
 
     private static void crearEquipo() {
-        TeamService tm = new TeamService();
         tm.crearEquipo();
     }
 
@@ -89,7 +90,8 @@ public class Fut5AppMenu {
     }
 
     private void importarJugadores() {
-        service.importarJugadores();
+        Set<Jugador> jugadores = service.importarJugadores();
+        tm.setJugadoresImportados(jugadores);
     }
     // EXPORTA JUGADORES A UN ARCHIVO .TXT
     private void exportarJugadores(TeamService tm) {

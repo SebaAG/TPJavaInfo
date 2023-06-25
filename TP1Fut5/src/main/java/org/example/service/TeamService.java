@@ -8,11 +8,15 @@ import java.util.*;
 public class TeamService {
     private final List<Equipo> equipos;
     private final PlayerService playerService = new PlayerService();
-    private final List<Jugador> jugadoresImportados;
+    private final Set<Jugador> jugadoresImportados;
+
+    public void setJugadoresImportados(Set<Jugador> jugadoresImportados) {
+        this.jugadoresImportados.addAll(jugadoresImportados);
+    }
 
     public TeamService() {
         this.equipos = new ArrayList<>();
-        this.jugadoresImportados = new ArrayList<>();
+        this.jugadoresImportados = new HashSet<>();
     }
 
     public List<Equipo> getEquipos() {
