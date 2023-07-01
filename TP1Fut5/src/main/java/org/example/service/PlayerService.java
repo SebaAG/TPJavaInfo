@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public class PlayerService {
 
-    private TeamService teamService;
+    private final TeamService teamService;
     private Scanner tecla;
 
     public PlayerService(TeamService teamService) {

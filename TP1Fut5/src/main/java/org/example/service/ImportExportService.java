@@ -7,13 +7,15 @@ import java.math.BigDecimal;
 import java.util.*;
 
 public class ImportExportService {
-    private final String ARCHIVO_JUGADORES = "F:/Trabajo Practico 1 INFORMATORIO/TP1Fut5/src/" +
-            "main/resources/jugadores.txt";
 
     public  Set<Jugador> importarJugadores() {
         Set<Jugador> jugadoresImportados = new HashSet<>();
+        String ARCHIVO_JUGADORES = "F:/Trabajo Practico 1 INFORMATORIO/TP1Fut5/src/" +
+                "main/resources/jugadores.txt";
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_JUGADORES))) {
             String linea;
+            int cont = 0;
+            
             while ((linea = br.readLine()) != null) {
                 linea = linea.replace("\"", "");
                 String[] datos = linea.split(",");
@@ -32,11 +34,11 @@ public class ImportExportService {
                             cantPart, esCapi, numCami);
                     jugadoresImportados.add(jugador);
 
-                    System.out.println("Datos importados: " + jugador.getId() + ", " + jugador.getNombre() + ", " +
-                            jugador.getApellido() + ", " + jugador.getAltura() + ", " + jugador.getPosicion() + ", " +
-                            jugador.getCantGoles() + ", " + jugador.getCantPart() + ", " + jugador.isEsCapi() + ", " +
-                            jugador.getNumCami());
+                    cont++;
                 }
+            }
+            if (cont > 0) {
+                System.out.println("Haz importado " + cont + " jugadores de forma correcta!!");
             }
         } catch (IOException e) {
             e.printStackTrace();
