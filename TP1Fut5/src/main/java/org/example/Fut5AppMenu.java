@@ -1,10 +1,7 @@
 package org.example;
 
 import org.example.model.Jugador;
-import org.example.service.DeleteService;
-import org.example.service.ImportExportService;
-import org.example.service.TeamService;
-import org.example.service.SearchService;
+import org.example.service.*;
 
 import java.util.Scanner;
 import java.util.Set;
@@ -14,7 +11,7 @@ public class Fut5AppMenu {
     private final TeamService tm = new TeamService();
     private final ImportExportService service = new ImportExportService();
     private final DeleteService deleteService = new DeleteService();
-    private final SearchService ss = new SearchService(tm);
+    private final PlayerService ps = new PlayerService(tm);
 
     // EJECUTA EL MENU DE OPCIONES EN EL METODO PRINCIPAL
     public void run() {
@@ -66,19 +63,19 @@ public class Fut5AppMenu {
     }
 
     private void buscarJugadorNombre() {
-        ss.buscarJugadorNombre();
+        ps.buscarJugadorNombre();
     }
 
     private void buscarEquipoNombre() {
-        ss.buscarEquipoNombre();
+        tm.buscarEquipoNombre();
     }
 
     private void buscarEquipoCamiseta() {
-        ss.buscarEquipoCamiseta();
+        tm.buscarEquipoCamiseta();
     }
 
     private void buscarEquipoPosicion() {
-        ss.buscarEquipoPosicion();
+        tm.buscarEquipoPosicion();
     }
 
     private void eliminarEquipo() {

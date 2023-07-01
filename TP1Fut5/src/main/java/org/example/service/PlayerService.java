@@ -11,7 +11,13 @@ import java.util.UUID;
 
 public class PlayerService {
 
+    private TeamService teamService;
     private Scanner tecla;
+
+    public PlayerService(TeamService teamService) {
+        this.teamService = teamService;
+        this.tecla = new Scanner(System.in);
+    }
 
     // CREADOR DE JUGADORES Y DONDE SE AGREGAN SU INFORMACION
     public Jugador crearJugador() {
@@ -135,5 +141,37 @@ public class PlayerService {
             }
         }
         return null;
+    }
+
+    public void buscarJugadorNombre() {
+        Scanner tecla = new Scanner(System.in);
+        System.out.println("** BUSCAR JUGADOR POR NOMBRE **");
+
+        System.out.print("Nombre del jugador: ");
+        String nombreJugador = tecla.nextLine();
+
+        boolean encontrado = false;
+
+        for (Equipo equipo : teamService.getEquipos()) {
+            List<Jugador> jugadores = equipo.getPlayers();
+
+            for (Jugador jugador : jugadores) {
+                if (jugador.getNombre().equalsIgnoreCase(nombreJugador)) {
+                    encontrado = true;
+                    System.out.println("Nombre del jugador: " + jugador.getNombre() + " " + jugador.getApellido());
+                    System.out.println("Equipo: " + equipo.getNombre());
+                    System.out.println("Altura: " + jugador.getAltura());
+                    System.out.println("Posicion: " + jugador.getPosicion());
+                    System.out.println("Capitan: " + jugador.isEsCapi());
+                    System.out.println("Numero de camiseta: " + jugador.getNumCami());
+                    System.out.println("Cantidad de partidos jugados: " + jugador.getCantPart());
+                    System.out.println("Cantidad de goles: " + jugador.getCantGoles());
+                    System.out.println("ID: " + jugador.getId());
+                }
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se encontró jugador!");
+        }
     }
 }

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class TeamService {
     private final List<Equipo> equipos;
-    private final PlayerService playerService = new PlayerService();
+    private final PlayerService playerService = new PlayerService(this);
     private final Set<Jugador> jugadoresImportados;
 
     public void setJugadoresImportados(Set<Jugador> jugadoresImportados) {
@@ -38,18 +38,9 @@ public class TeamService {
         System.out.print("Fecha de creación del equipo: ");
         int fechaCreacion = tecla.nextInt();
 
-        System.out.println("** DATOS DEL ENTRENADOR **");
+        CoachService coachService = new CoachService();
+        Entrenador entrenador = coachService.crearEntrenador();
 
-        System.out.print("Nombre del entrenador: ");
-        String nombEntrenador = tecla.next();
-
-        System.out.print("Apellido del entrenador: ");
-        String apeEntrenador = tecla.next();
-
-        System.out.print("Edad del entrenador: ");
-        int edadEntrenador = tecla.nextInt();
-
-        Entrenador entrenador = new Entrenador(nombEntrenador, apeEntrenador, edadEntrenador);
         Equipo equipo = new Equipo(nombreEquipo, fechaCreacion, entrenador);
         equipos.add(equipo);
 
@@ -113,5 +104,107 @@ public class TeamService {
             }
         }
         return false;
+    }
+
+    public void buscarEquipoNombre() {
+        Scanner tecla = new Scanner(System.in);
+        System.out.println(" ** BUSCAR EQUIPO POR NOMBRE **");
+        System.out.print("Nombre del equipo: ");
+        String nombreEquipo = tecla.nextLine();
+        boolean encontrado = false;
+
+        for (Equipo equipo : equipos) {
+            if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
+                encontrado = true;
+                System.out.println("Nombre del equipo: " + equipo.getNombre());
+                System.out.println("Fecha de creación: " + equipo.getFechaCreacion());
+                System.out.println("Nombre del entrenador: " + equipo.getEntrenador().getNombre() + " " +
+                        equipo.getEntrenador().getApellido() + " Edad: " + equipo.getEntrenador().getEdad());
+                System.out.println("Capitán del equipo: " + obtenerNombreCapitan(equipo));
+                System.out.println("Lista de jugadores ordenados por nombre: ");
+
+                List<Jugador> jugadores = equipo.getPlayers();
+                jugadores.sort(Comparator.comparing(Jugador::getNombre));
+
+                for (Jugador jugador : jugadores) {
+                    System.out.println(jugador.getNombre() + " " + jugador.getApellido());
+                }
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se encontró equipo con ese nombre!");
+        }
+    }
+
+    private String obtenerNombreCapitan(Equipo equipo) {
+        for (Jugador jugador : equipo.getPlayers()) {
+            if (jugador.isEsCapi()) {
+                return jugador.getNombre() + " " + jugador.getApellido();
+            }
+        }
+        return "No hay capitan asignado!";
+    }
+
+    public void buscarEquipoCamiseta() {
+        Scanner tecla = new Scanner(System.in);
+        System.out.println(" ** BUSCAR EQUIPO ORDENADO POR Nº CAMISETA **");
+        System.out.print("Nombre del equipo: ");
+        String nombreEquipo = tecla.nextLine();
+        boolean encontrado = false;
+
+        for (Equipo equipo : equipos) {
+            if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
+                encontrado = true;
+                System.out.println("Nombre del equipo: " + equipo.getNombre());
+                System.out.println("Fecha de creación: " + equipo.getFechaCreacion());
+                System.out.println("Nombre del entrenador: " + equipo.getEntrenador().getNombre() + " " +
+                        equipo.getEntrenador().getApellido() + " Edad: " + equipo.getEntrenador().getEdad());
+                System.out.println("Lista de jugadores ordenados por su numero de camiseta: ");
+
+                List<Jugador> jugadores = equipo.getPlayers();
+                jugadores.sort(Comparator.comparingInt(Jugador::getNumCami));
+
+                for (Jugador jugador : jugadores) {
+                    System.out.println(jugador.getNombre() + " " + jugador.getApellido() + " " +
+                            jugador.getNumCami());
+                }
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se encontró ningún equipo con ese nombre!");
+        }
+    }
+
+    public void buscarEquipoPosicion() {
+        Scanner tecla = new Scanner(System.in);
+        System.out.println(" ** BUSCAR EQUIPO ORDENADO POR Nº CAMISETA Y POSICION **");
+        System.out.print("Nombre del equipo: ");
+        String nombreEquipo = tecla.nextLine();
+        boolean encontrado = false;
+
+        for (Equipo equipo : equipos) {
+            if (equipo.getNombre().equalsIgnoreCase(nombreEquipo)) {
+                encontrado = true;
+                System.out.println("Nombre del equipo: " + equipo.getNombre());
+                System.out.println("Fecha de creación: " + equipo.getFechaCreacion());
+                System.out.println("Nombre del entrenador: " + equipo.getEntrenador().getNombre() + " " +
+                        equipo.getEntrenador().getApellido() + " Edad: " + equipo.getEntrenador().getEdad());
+                System.out.println("Lista de jugadores ordenados por su numero de camiseta y por posición: ");
+
+                List<Jugador> jugadores = equipo.getPlayers();
+                jugadores.sort(Comparator.comparing(Jugador::getPosicion).thenComparingInt(Jugador::getNumCami));
+
+                for (Jugador jugador : jugadores) {
+                    System.out.println(jugador.getNombre() + " " + jugador.getApellido() + " -Camiseta: " +
+                            jugador.getNumCami() + " -Posición: " + jugador.getPosicion());
+                }
+                break;
+            }
+        }
+        if (!encontrado) {
+            System.out.println("No se encontró ningún equipo con ese nombre!");
+        }
     }
 }
