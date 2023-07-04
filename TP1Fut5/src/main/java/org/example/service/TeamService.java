@@ -8,6 +8,7 @@ import java.util.*;
 public class TeamService {
     private final List<Equipo> equipos;
     private final PlayerService playerService = new PlayerService(this);
+    private final CoachService coachService = new CoachService();
     private final Set<Jugador> jugadoresImportados;
 
     public void setJugadoresImportados(Set<Jugador> jugadoresImportados) {
@@ -38,7 +39,6 @@ public class TeamService {
         System.out.print("Fecha de creación del equipo: ");
         int fechaCreacion = tecla.nextInt();
 
-        CoachService coachService = new CoachService();
         Entrenador entrenador = coachService.crearEntrenador();
 
         Equipo equipo = new Equipo(nombreEquipo, fechaCreacion, entrenador);
